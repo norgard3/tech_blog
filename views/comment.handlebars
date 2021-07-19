@@ -1,0 +1,33 @@
+<div class="row mb-4 border border-dark post">
+  <div class="d-flex justify-content-between post-header">
+    <h2>
+      <a href="/post/{{post.id}}">{{post.name}}</a>
+    </h2>
+    <h3>
+        Posted by {{post.user.username}} on {{format_date post.date_created}}
+    </h3>
+  </div>
+  <div class="col-md-7 post-body">
+    <p>
+      {{post.content}}
+    </p>
+  </div>
+</div>
+<div class="row mb-4 border border-dark post">
+    <div class="d-flex justify-content-between post-header">
+    </div>
+    <h4>
+        Comment
+    </h4>
+    <form class="form new-comment-form">
+        <div class="form-group">
+            <textarea class="form-input" id="comment" name="comment">
+            </textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">submit</button>
+        </div>
+    </form>
+</div>
+
+<script src="../public/js/comment.js"></script>
