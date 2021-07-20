@@ -1,18 +1,4 @@
 <!-- Loop over each object in the post array -->
 {{#each posts as |post| }}
-<div class="col mb-4 border border-dark post">
-  <div class="d-flex justify-content-between post-header">
-    <h2>
-      <a href="/post/{{post.id}}">{{post.title}}</a>
-    </h2>
-    <h3>
-        Posted by {{post.user.username}} on {{format_date post.date_created}}
-    </h3>
-  </div>
-  <div class="col-md-12 post-body">
-    <p>
-      {{post.content}}
-    </p>
-  </div>
-</div>
+{{> post }}
 {{/each}}
