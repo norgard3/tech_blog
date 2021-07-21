@@ -1,0 +1,9 @@
+<h1>Welcome to your dashboard</h1>
+{{#each posts as |post| }}
+{{> dashboard }}
+{{/each}}
+
+
+<button type="submit" class="btn" id="new-post"><a href="/dashboard/new">create a new post</a></button>
+
+<script src="./js/newPost.js"></script>
