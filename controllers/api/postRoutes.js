@@ -1,10 +1,8 @@
 const router = require('express').Router();
-const { User, Post } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.put('/:id', withAuth, async (req, res) => {
-    // Where is this action method sending the data from the body of the fetch request? Why?
-    // It is sending the data to the Model so that one dish can be updated with new data in the database.
     try {
       const post = await Post.update(
         {
@@ -37,6 +35,37 @@ router.put('/:id', withAuth, async (req, res) => {
       }
   
       res.status(200).json(postData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  router.post('/comment', withAuth, async (req, res) => {
+    try {
+      const newComment = await Comment.create(
+        {
+          comment_content: req.body.comment,
+          user_id: req.session.user_id,
+          post_id: req.body.post_id,
+        },
+      );
+      res.status(200).json(newComment);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  router.post('/', withAuth, async (req, res) => {
+    try {
+      const newPost = await Post.create(
+        {
+          title: req.body.title,
+          content: req.body.newPost,
+          user_id: req.session.user_id,
+
+        },
+      );
+      res.status(200).json(newPost);
     } catch (err) {
       res.status(500).json(err);
     }
